@@ -76,7 +76,21 @@ export class TodosAccess {
         return ''
     }
 
-    // TODO: S3 stuff
+    // Update Todo with s3 attachment URL
+    async updateTodoAttachment(userId: String, todoId: string, attachmentUrl: string) {
+        await this.docClient.update({
+            TableName: this.todosTable,
+            Key: {
+                'todoId': todoId,
+                'userId': userId
+            },
+            UpdateExpression: "set attachmentUrl = :au",
+            ExpressionAttributeValues: {
+                ":au": attachmentUrl
+            },
+            ReturnValues: "UPDATED_NEW"
+        }).promise()
+    }
 }
 
 function createDynamoDBClient() {

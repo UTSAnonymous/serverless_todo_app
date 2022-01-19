@@ -15,11 +15,11 @@ export const handler = middy(
     // Update a TODO item with the provided id using values in the "updatedTodo" object
     const userId = getUserId(event);
 
-    const result = await updateTodo(userId, todoId, updatedTodo)
+    await updateTodo(userId, todoId, updatedTodo)
 
     return{
         statusCode: 200,
-        body: JSON.stringify({todoUpdate: result})
+        body: ""
     }
   })
 

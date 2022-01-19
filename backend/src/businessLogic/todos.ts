@@ -7,6 +7,7 @@ import { createLogger } from '../utils/logger'
 import * as uuid from 'uuid'
 // import * as createError from 'http-errors'
 import { TodoUpdate } from '../models/TodoUpdate';
+import { generateUploadUrl } from './attachmentUtils'
 
 const logger = createLogger('TodoBusinessLogic')
 const todosAccess = new TodosAccess()
@@ -57,4 +58,7 @@ export async function deleteTodo(userId: string, todoId: string): Promise<String
     return await todosAccess.deleteTodos(userId, todoId)
 }
 
-// TODO: S3 stuff
+// generate upload signed url
+export async function createAttachmentPresignedUrl(userId: string, todoId: string) {
+    return await generateUploadUrl(userId, todoId)
+}
