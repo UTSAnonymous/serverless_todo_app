@@ -40,7 +40,7 @@ export async function createTodo(
 // Update todo func
 export async function updateTodo(
     userId: string, todoId: string, updateTodoRequest: UpdateTodoRequest
-): Promise<TodoItem> {
+): Promise<TodoUpdate> {
     const updateTodo: TodoUpdate = {
         name: updateTodoRequest.name,
         dueDate: updateTodoRequest.dueDate,
